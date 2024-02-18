@@ -1,0 +1,147 @@
+DAY 2: OF FOLLOWING THE STRIVER SERIES
+
+STEP 1.4
+
+PROBLEM STATEMENT 1:
+
+Palindrome Number
+Given an integer x, return true if x is a palindrome, and false otherwise.
+
+class Solution {
+    public boolean isPalindrome(int x) {
+        if(x<0) return false;
+       
+        int tmp = x;
+        int rev = 0;
+        while(tmp>0){
+            rev = rev*10+(tmp%10);
+            tmp /= 10;
+        }
+        if(rev==x)  return true;
+        else return false;
+    }
+}
+
+>>>logic notes:- we simply done the reverse of number and then check whether both the numbers are same or not
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+PROBLEM STATEMENT 2:
+You are given two integers 'n', and 'm'. Calculate 'gcd(n,m)', without using library functions.
+Note:
+The greatest common divisor (gcd) of two numbers 'n' and 'm' is the largest positive number that divides both 'n' and 'm' without leaving a remainder.
+
+Example:
+Input: 'n' = 6, 'm' = 4
+
+Output: 2
+
+ public static int calcGCD(int n, int m){
+        if(isPrime(n)&&isPrime(m))  return 1;
+        int min = Math.max(n,m);
+        for(int i=min;i>=2;i--){
+            if(n%i==0 && m%i==0)    return i;
+        }
+        return 1;
+    }
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+PROBLEM STATEMENT 3:
+You are given two integers 'n', and 'm'. Calculate 'gcd(n,m)', without using library functions.
+Note:
+The greatest common divisor (gcd) of two numbers 'n' and 'm' is the largest positive number that divides both 'n' and 'm' without leaving a remainder.
+
+Example:
+Input: 'n' = 6, 'm' = 4
+Output: 2
+Explanation:
+Here, gcd(4,6) = 2, because 2 is the largest positive integer that divides both 4 and 6.
+
+
+    public static boolean isPrime(int num) {
+		for(int i=2;i<=num/2;i++){
+			if(num%i==0)	return false;
+		}
+		return true;
+	}
+    public static int calcGCD(int n, int m){
+        if(isPrime(n)&&isPrime(m))  return 1;
+        int min = Math.max(n,m);
+        for(int i=min;i>=2;i--){
+            if(n%i==0 && m%i==0)    return i;
+        }
+        return 1;
+    }
+}
+>>> logic notes:- minimum of the two numbers and then one by one check whether that number divides both the number or not
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+PROBLEM STATEMENT 4:
+You are given an integer 'n'.
+Return 'true' if 'n' is an Armstrong number, and 'false' otherwise.
+Note:
+An Armstrong number is a number (with 'k' digits) such that the sum of its digits raised to 'kth' power is equal to the number itself. For example, 371 is an Armstrong number because 3^3 + 7^3 + 1^3 = 371.
+Example:
+Input: 'n' = 1634
+Output: true
+Explanation:
+1634 is an Armstrong number, as 1^4 + 6^4 + 3^4 + 4^4 = 1634
+
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int num = sc.nextInt();
+        System.out.println(isArmstrong(num));
+        sc.close();
+    }
+    public static boolean isArmstrong(int n) {
+        int temp = n;
+        int k = 0;
+        int digits = (int) Math.log10(n) + 1;
+        while(n > 0) {
+            int lasDigit = n % 10;
+            k += (int) Math.pow(lasDigit, digits);
+            n /= 10;
+        }
+        if(k == temp) {
+            return true;
+        }
+        return false;
+    }
+}
+>>logic notes:- use log10() function to calculate number of digits. and rest of the logic is very simple.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+PROBLEM STATEMENT 5:
+You are given an integer ‘n’.
+Function ‘sumOfDivisors(n)’ is defined as the sum of all divisors of ‘n’.
+Find the sum of ‘sumOfDivisors(i)’ for all ‘i’ from 1 to ‘n’.
+
+Input: ‘n’  = 5
+Output: 21
+Explanation:
+We need to find the sum of ‘sumOfDivisors(i)’ for all ‘i’ from 1 to 5. 
+‘sumOfDivisors(1)’ = 1
+‘sumOfDivisors(2)’ = 2 + 1 = 3
+‘sumOfDivisors(3)’ = 3 + 1 = 4
+‘sumOfDivisors(4)’ = 4 + 2 +1 = 7 
+‘sumOfDivisors(5)’ = 5 + 1 = 6
+Therefore our answer is sumOfDivisors(1) + sumOfDivisors(2) + sumOfDivisors(3) + sumOfDivisors(4) + sumOfDivisors(5) = 1 + 3 + 4 + 7 + 6 = 21.
+
+public class Solution {
+    private static int sumofDivisor(int n){
+        if(n==1)    return 1;
+        int sum=n;
+        for(int i=1;i<=n/2;i++){
+            if(n%i==0){
+                sum+=i;
+            }
+        }
+        return sum;
+    }
+    public static int sumOfAllDivisors(int n){
+        int sum = 0;
+        for(int i=1;i<=n;i++){
+            sum+=sumofDivisor(i);
+        }
+        return sum;
+    }
+    
+}
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

@@ -1,0 +1,81 @@
+					STRIVERS DSA SHEET (A2Z)
+STEP:1.4
+DAY 1 (DATE : 17 FEB 2024)
+
+PROB:1
+-----------------
+Problem statement
+You are given a number ’n’.
+
+Find the number of digits of ‘n’ that evenly divide ‘n’.
+
+Note:
+A digit evenly divides ‘n’ if it leaves no remainder when dividing ‘n’.
+
+Example:
+Input: ‘n’ = 336
+
+Output: 3
+
+Explanation:
+336 is divisible by both ‘3’ and ‘6’. Since ‘3’ occurs twice it is counted two times.
+
+code:- 
+import java.util.ArrayList;
+import java.util.Collections;
+public class Solution {
+    public static int countDigits(int n){
+        ArrayList<Integer> digits = new ArrayList<Integer>();
+        int tmp = n;
+        int count = 0;
+        while(tmp>0){
+            digits.add(tmp%10);
+            tmp/=10;
+        }
+        for(int i=0;i<digits.size();i++){
+            if( digits.get(i)!=0 && n%digits.get(i)==0)  count++;
+        }
+        return count;
+    }
+}
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+PROB 2:
+----------------------
+PROBLEM STATEMENT
+Given a signed 32-bit integer x, return x with its digits reversed. If reversing x causes the value to go outside the signed 32-bit integer range [-2^31, 2^31 - 1], then return 0.
+
+Assume the environment does not allow you to store 64-bit integers (signed or unsigned).
+
+
+Example 1:
+
+Input: x = 123
+Output: 321
+Example 2:
+
+Input: x = -123
+Output: -321
+Example 3:
+
+Input: x = 120
+Output: 21
+
+class Solution {
+    public int reverse(int x) {
+        long reversed = 0; // Use long to handle overflow during reversal
+        while (x != 0) {
+            reversed = reversed * 10 + x % 10;
+            x /= 10;
+        }
+        if (reversed < Integer.MIN_VALUE || reversed > Integer.MAX_VALUE) {
+            return 0;
+        }
+        return (int) reversed;
+    }
+}
+
+>>>logic notes:- reverse every number and then check it belongs to the range if yes then return that reversed number else return 0;
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
