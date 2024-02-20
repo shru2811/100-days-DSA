@@ -1,0 +1,46 @@
+DAY 4: STRIVER A2Z DSA COURSE
+
+Problem statement
+Given an array 'arr' of size 'n'.
+Return an array with all the elements placed in reverse order.
+Note:
+You don’t need to print anything. Just implement the given function.
+Example:
+Input: n = 6, arr = [5, 7, 8, 1, 6, 3]
+Output: [3, 6, 1, 8, 7, 5]
+Explanation: After reversing the array, it looks like this [3, 6, 1, 8, 7, 5].
+
+public class Solution {
+    private static int[] helperReverse(int[] nums, int[]arr, int n,int i){
+        if(n==0)    return arr;
+        arr[i] = nums[n-1];
+        return helperReverse(nums, arr, n-1, i+1);
+    }
+    public static int[] reverseArray(int n, int []nums) {
+        int[] arr = new int[nums.length];
+        return helperReverse(nums,arr,n,0);
+
+    }
+}
+
+LOGIC NOTES:- I USED HER an extra array and two variables to track the arrays, nums from last to first and arr from first to last.
+------------------------------------------------------------------------------------------------------------------------------------------
+Problem statement
+Determine if a given string ‘S’ is a palindrome using recursion. Return a Boolean value of true if it is a palindrome and false if it is not.
+Note: You are not required to print anything, just implement the function. Example:
+Input: s = "racecar"
+Output: true
+Explanation: "racecar" is a palindrome.
+
+MY SOLUTION:- IS THIS, but it takes more time (not efficient)
+
+public class Solution { 
+    public static boolean isPalindrome(String str) {
+        int n = str.length();
+        if(n==0 || n==1)  return true;
+        if(str.charAt(0)==str.charAt(n-1)) return isPalindrome(str.substring(1,n-1));
+        return false;
+    }
+}
+
+Better Approach:- use helper function
