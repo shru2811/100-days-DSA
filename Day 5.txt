@@ -1,0 +1,57 @@
+Day 5							21 FEBRUARY 2024
+
+Fibonacci Number
+The Fibonacci numbers, commonly denoted F(n) form a sequence, called the Fibonacci sequence, such that each number is the sum of the two preceding ones, starting from 0 and 1. That is,
+F(0) = 0, F(1) = 1
+F(n) = F(n - 1) + F(n - 2), for n > 1.
+Given n, calculate F(n).
+
+class Solution {
+    public int fib(int n) {
+        if(n==0)    return 0;
+        if(n==1 || n==2)    return 1;
+        return fib(n-1)+fib(n-2);
+    }
+}
+--------------------------------------------------------------------------------------------------------------------------------------------
+Problem statement
+You are given an integer ’n’.
+Your task is to return a sorted array (in increasing order) containing all the factorial numbers which are less than or equal to ‘n’.
+The factorial number is a factorial of a positive integer, like 24 is a factorial number, as it is a factorial of 4.
+Note:
+In the output, you will see the array returned by you.
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Solution {
+    private static long factorial(int n) {
+        if (n == 0 || n == 1)
+            return 1;
+        return (long) n * factorial(n - 1);
+    }
+
+    private static List<Long> helper(List<Long> ls, long n) {
+        long i = 1;
+        while (i <= n) {
+            long fact = factorial((int) i);
+            if ( fact <= n) {
+                ls.add(fact);
+                i++;
+            } else
+                break;
+        }
+        return ls;
+    }
+
+    public static List<Long> factorialNumbers(long n) {
+        List<Long> ls = new ArrayList<>();
+        return helper(ls, n);
+    }
+
+}
+
+LOGIC NOTES:- create helper function as it wants an list of all those factorials lesser than n, and then a factorial function to calculate factorial.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		THAT'S IT FOR TODAY. I am not well but, I have promised myself i will not be 0%. everyday i will practice whether its 0.1% , 10% or 100%.
