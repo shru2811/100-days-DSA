@@ -1,0 +1,51 @@
+DAY 7: STRIVER DSA SERIES
+STEP 1.6 
+
+Problem statement
+Given an array 'v' of 'n' numbers.
+Your task is to find and return the highest and lowest frequency elements.
+If there are multiple elements that have the highest frequency or lowest frequency, pick the smallest element.
+Example:
+Input: ‘n' = 6, 'v' = [1, 2, 3, 1, 1, 4]
+Output: 1 2
+Explanation: The element having the highest frequency is '1', and the frequency is 3. The elements with the lowest frequencies are '2', '3', and '4'. Since we need to pick the smallest element, we pick '2'. Hence we return [1, 2].
+
+code solution:
+import java.util.*;
+
+public class Solution {
+    public static int[] getFrequencies(int[] v) {
+        if (v == null || v.length == 0) {
+            return new int[] {0, 0}; // If the array is empty, return default values.
+       }
+        TreeMap<Integer, Integer> mp = new TreeMap<>();
+        for (int i = 0; i < v.length; i++) {
+            if (mp.containsKey(v[i])) {
+                mp.put(v[i], mp.get(v[i]) + 1);
+            } else {
+                mp.put(v[i], 1);
+            }
+        }
+
+        int min = Integer.MAX_VALUE;
+        int max = Integer.MIN_VALUE;
+        int maxInd = -1;
+        int minInd = -1;
+
+        for (Map.Entry<Integer, Integer> entry : mp.entrySet()) {
+            if (entry.getValue() > max) {
+                max = entry.getValue();
+                maxInd = entry.getKey();
+            }
+            if (entry.getValue() < min) {
+                min = entry.getValue();
+                minInd = entry.getKey();
+            }
+        }
+
+        int[] ans = {maxInd, minInd};
+        return ans;
+    }
+}
+LOGIC NOTES:- hashing is used. Treemap is used to get the minimum of all the minimum frequencies key. TreeMap stores the key value pairs in ordered form.
+Edge cases: empty array.
